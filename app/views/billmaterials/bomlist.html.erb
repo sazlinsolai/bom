@@ -1,0 +1,23 @@
+<h1>Bill Of Material List</h1><br>
+
+<table width="50%">
+  <tr bgcolor="silver">
+    <th>Bom Name</th>
+    <th></th>
+    <th>Bom No</th>
+    <th>Bom Master Name</th>
+  </tr>
+<% for billmaterial in @billmaterials %>
+  <tr>
+    <td><%= link_to billmaterial.bill_name, :action => 'new', :controller => 'billmaterials', :id => billmaterial.bom_product_id, :id2 => billmaterial.bom_master, :id3 => billmaterial.bom_master_id, :id4 => billmaterial.id %></td>
+    <td><%= link_to 'view tree', :action => 'show', :controller => 'billmaterials', :id => billmaterial.bom_master_id %></td>
+    <td><%= billmaterial.bill_no %></td>
+    <td><%= link_to billmaterial.bom_master, :action => 'new', :controller => 'billmaterials', :id => billmaterial.bom_master_id, :id2 => billmaterial.bom_master, :id3 => billmaterial.bom_master_id, :id4 => billmaterial.id %></td>
+    </tr>
+  
+<% end %>
+
+</table>
+<br>
+
+<%= link_to 'Home', :action => 'index', :controller => 'home' %> | <%= link_to 'Product List', billmaterials_path %> | <%= link_to 'Show Bom', billmaterial_path('#') %>

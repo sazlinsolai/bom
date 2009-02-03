@@ -1,0 +1,10 @@
+
+<p><%= @product.product_name %></p>
+<p><%= @product.product_no %></p>
+
+
+<%= link_to 'Create PDF', formatted_product_path(:id => @product, :format => 'pdf')%>
+
+
+<%= link_to 'Back', products_path %>
+ 

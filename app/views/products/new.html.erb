@@ -1,0 +1,28 @@
+
+
+<h1>New product</h1>
+
+<% form_for(@product) do |f| %>
+  <%= f.error_messages %>
+  
+<p>product name : <%= f.text_field :product_name %></p><br>
+<p>product no : <%= f.text_field :product_no %></p><br>
+<p>product description : <%= f.text_field :product_desc %></p><br>
+<p>product type : <%= f.text_field :product_type %></p><br>
+
+  <p>
+    <%= f.submit "Create", :name => 'commit' %> | <%= f.submit 'Back', :action => 'index', :controller => 'home', :name => 'back' %>
+  </p>
+<% end %>
+
+<script type="text/javascript">
+var product_name = new LiveValidation( 'product_product_name' );
+product_name.add( Validate.Presence );
+
+var product_no = new LiveValidation( 'product_product_no', {onlyOnSubmit: true } );
+product_no.add( Validate.Presence );
+var product_desc = new LiveValidation( 'product_product_desc', {onlyOnSubmit: true } );
+product_desc.add( Validate.Presence );
+var product_type = new LiveValidation( 'product_product_type', {onlyOnSubmit: true } );
+product_type.add( Validate.Presence );
+</script>

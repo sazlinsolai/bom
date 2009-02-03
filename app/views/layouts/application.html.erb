@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-US">
+
+<head>
+  <title><%= @page_title || 'HDC' %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= javascript_include_tag :defaults, 'livevalidation_prototype' %>
+  <%= stylesheet_link_tag 'style','ddsmoothmenu','in_place_styles' %>
+  <script type="text/javascript" src="/javascripts/jquery-1.2.6.min.js"></script>
+  <script type="text/javascript" src="/javascripts/ddsmoothmenu.js"></script>
+
+<script language="javascript">
+    $jQuery = jQuery.noConflict();
+    </script>
+</head>
+
+  <body>
+
+<!-- ##### Header ##### -->    
+	<div id="header">
+	  <div class="superHeader">
+	  </div>
+	  
+      <div class="midHeader">
+        <h1 class="headerTitle" lang="la">HDC</h1>
+        <div class="headerSubTitle" title="Killer App 2008">
+          Welcome
+        </div>
+      </div>
+
+	  <div class="subHeader">
+		<span class="doNotDisplay">Navigation:</span>
+        
+		
+	  </div>
+	
+    </div>
+ <div class="leftSideBar">
+   <p class="sideBarTitle">hai</p>
+    </div>
+   
+    <!-- ##### Main Copy ##### -->
+
+    <div id="main-copy">
+	
+		
+
+		<% flash.each do |key,value| %>
+		<div id="flash" class="flash_<%= key %>" >
+			<span class="message"><%= value %></span>
+		</div>
+		<% end -%>
+
+		<%= yield :layout %>
+		
+      
+    </div>
+    
+<!-- ##### Left Sidebar ##### -->
+    
+    <!-- ##### Footer ##### -->
+
+    <div id="footer">
+hsdfsdhkjfs
+      <div>
+      
+      </div>
+    </div>
+  </body>
+</html>

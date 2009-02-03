@@ -1,0 +1,34 @@
+<% if !@prod_info[0].nil? %>
+  <table border="1">
+    <tr>
+      <td>Product Name</td>
+      <td>Product ID from product_info</td> 
+      <td>test inplace editor</td>
+      <td>qty_strip</td> 
+      <td>specification</td>
+      <td>test</td>
+      <td>test 2</td>
+      <td>test 3</td>
+    </tr>
+<% for product_info in @prod_info %>
+  <% @sum = '123' %>
+    <tr>
+        <% @product_info = product_info %>
+          <td><%= product_info.product.product_name %></td>
+          <td><%= product_info.product_id %></td>
+          
+          <td><span id="sum_<%= product_info.id %>"><%= @sum %></span></td>
+        
+          <td><span id="strip_<%= product_info.id %>"><%= render :partial => 'billmaterials/strip' %></span></td>
+
+          <td><%= in_place_text_field :product_info, :specification %></td>
+          <td><%= in_place_select :product_info, :stamping_location, :choices => Organization.find(:all).collect { |p|[p.name] } %></td>
+          
+    </tr>
+ <% end %>
+</table>
+  
+<% else %>
+  <h2>no product info</h2>
+<% end %>
+

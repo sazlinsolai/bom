@@ -1,0 +1,53 @@
+<%= javascript_include_tag 'jquery' %>
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+            var tabContainers = $('div.tabs > div');
+            tabContainers.hide().filter(':first').show();
+
+            $('div.tabs ul a').click(function() {
+                    tabContainers.hide();
+                    tabContainers.filter(this.hash).show();
+                    $('div.tabs ul a').removeClass('selected');
+                    $(this).addClass('selected');
+
+                    return false;
+            }).filter(':first').click();
+  });
+</script>
+
+
+<body id="page">
+<div id="smoothmenu1" class="ddsmoothmenu">
+    <%= render :partial => 'smoothmenu' %>
+</div>
+
+<div class="tabs">
+  <ul>
+    <li><a href="#first">First</a></li>
+    <li><a href="#second">Second</a></li>
+    <li><a href="#third">Third</a></li>
+  </ul>
+
+<br><br>
+  <div id="first">
+    <%= render :partial => 'first_tab' %>
+  </div>
+  <div id="second">
+    <%= render :partial => 'second_tab' %>
+  </div>
+  <div id="third">
+    <%= render :partial => 'third_tab' %>
+  </div>
+
+
+
+<br><br>
+<hr>
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<p><%= link_to 'Add New Product', new_product_path %></p>
+<p><%= link_to 'Bill Of Material', billmaterials_path %></p>
+
+</div>
+</body>

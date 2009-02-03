@@ -1,0 +1,12 @@
+
+<ul class="bill_billno">
+  <% for product in @product do -%>
+  <li class="product">
+    <div class="id" style="display:none;"><%= product.id %></div>
+    <div class="productno" style="font-weight:bold"><%=h "#{product.product_no}" %></div>
+    <div class="productname" style="font-size:smaller">
+       <%=h "#{product.product_name}" %>
+    </div>
+  </li>
+<% end -%>
+</ul>

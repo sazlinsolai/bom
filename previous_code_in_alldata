@@ -1,0 +1,59 @@
+<% if @prod_info %>
+  <h2>have product info</h2>
+    
+<% else %>
+  <h2>no product info</h2>
+<% end %>
+
+<% if @bill %>
+  <p><strong>Bill Of Material for <%= h @bill[0].bom_master %></strong></p>
+  <table>
+    <tr bgcolor="silver">
+      <td>Selected Item is</td>
+      <td>Bom No : </td>
+      <td>Bom Description : </td>
+      <td>Bom Date : </td>
+      <td>Bom Master Name : </td>
+      <td>Product Info ID:</td>
+    </tr>
+    <tr>
+        <% for bom in @bill %>
+          <td> <%=h bom.bill_name%> </td>
+          <td><%= h bom.bill_no %></td>
+          <td><%= h bom.bill_desc %></td>
+          <td><%= h bom.bill_date %></td>   
+          <td><%= h bom.bom_master %></td>
+          <td></td>
+    </tr>
+    <% end %>
+</table>
+
+<% else %>
+  Billmaterial not found
+<% end %>
+
+from _billmaterial.html.erb :
+<% if @billmaterial %>
+  <p><strong>Bill Of Material for <%= h @billmaterial.bom_master %></strong></p>
+  <table>
+    <tr bgcolor="silver">
+      <td>Selected Item is</td>
+      <td>Bom No : </td>
+      <td>Bom Description : </td>
+      <td>Bom Date : </td>
+      <td>Bom Master Name : </td>
+    </tr>
+    <tr>
+          <td> <%=h @billmaterial.bill_name%> </td>
+          <td><%= h @billmaterial.bill_no %></td>
+          <td><%= h @billmaterial.bill_desc %></td>
+          <td><%= h @billmaterial.bill_date %></td>   
+          <td><%= h @billmaterial.bom_master %></td>
+    </tr>
+</table>
+
+<% else %>
+  Billmaterial not found
+<% end %>
+
+<%= link_to 'Bom List', bomlist_billmaterials_path %>

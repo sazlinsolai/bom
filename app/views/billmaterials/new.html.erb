@@ -1,0 +1,45 @@
+<h1>New billmaterial</h1>
+
+<script type="text/javascript">
+    function showInfo() {
+        document.getElementById('billmaterial_bill_no').value = document.getElementById('product_product_no').value;
+        document.getElementById('billmaterial_bill_name').value = document.getElementById('product_product_name').value;
+        document.getElementById('billmaterial_bill_desc').value = document.getElementById('product_product_desc').value;
+        document.getElementById('billmaterial_bom_product_id').value = document.getElementById('product_id').value;
+    }
+</script>
+
+<%= error_messages_for :billmaterial %>
+
+<fieldset>
+<p><label>Product Id : </label><!--%= @products.id %--></p>
+<p><label>Product/Part No :</label><%= @products.product_no %></p>
+<p><label>Product/Part Name:</label><%= @products.product_name %></p>
+<p><label>Product/Part Desc:</label><%= @products.product_desc %></p>
+<p><label>BillMaterial ID :<%= @billmaterial_id %></label>
+<% if @master.nil? %>
+    <% @value = "#{@products.product_no}" + ':' + "#{@products.product_name}" %>
+    <% @value_id = @products.id %>
+     <p><label>Bom Master for(master nil)  :</label><%= @value %></p>
+<% else %>
+     <% @value = @master %>
+     <% @value_id = @master_id %>
+    <p><label>Bom Master for  :</label><%= @master %></p>
+<% end %>
+</fieldset>
+<%= @value %> | <%= @value_id %>
+
+
+
+<div id="bomform">
+      <% form_for(@billmaterial, :url => {:action => 'create'}) do %>
+                      
+              <%= render :partial => "billmaterials/form" %>
+              <p>
+                <%= submit_tag "Create" %>
+              </p>
+      <% end %>
+      
+ </div>
+
+<%= link_to 'BOM List',  bomlist_billmaterials_path %> | <%= link_to 'Product List', billmaterials_path %>

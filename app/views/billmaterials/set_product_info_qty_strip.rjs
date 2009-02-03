@@ -1,0 +1,4 @@
+
+
+page.replace_html "strip_#{@product_info.id}", :partial => "billmaterials/strip"
+page.replace_html "sum_#{@product_info.id}", @sum

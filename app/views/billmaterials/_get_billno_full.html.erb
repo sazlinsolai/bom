@@ -1,0 +1,11 @@
+
+<span id="billno">
+<%= text_field_with_auto_complete :product, :product_no, {}, :after_update_element => 
+  "function(element,value) " +
+  "{ " + 
+    remote_function(:update=>'billno',:url=>{:action=>:get_billno_full},:with=>"'id='+element.value") + ";" +
+    remote_function(:update=>'bill_name',:url=>{:action=>:get_bill_name},:with=>"'id='+element.value") + ";" +
+    remote_function(:update=>'bill_desc',:url=>{:action=>:get_bill_desc},:with=>"'id='+element.value") + ";" +
+  "}" 
+%>
+</span>

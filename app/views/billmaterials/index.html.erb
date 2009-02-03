@@ -1,0 +1,28 @@
+
+
+
+<h1>Listing billmaterials</h1><br>
+
+<table width="50%">
+  <tr bgcolor="silver">
+    <th>Product Name</th>
+    <th>Product No</th>
+    <th>Product Desc</th>
+    <th>Action</th>
+  </tr>
+
+<% for product in @products %>
+  <tr>
+    <td><%= product.product_name %></td>
+    <td><%= product.product_no %></td>
+    <td><%= product.product_desc %></td>
+    <td><%= link_to 'Create New Bom', :action => 'create_master_bom' ,:controller => 'billmaterials', :id => product.id, :parent_id => 0 %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= link_to 'Home',  :action => 'index', :controller => 'home'%> | <%= link_to 'Bill Of Material List', bomlist_billmaterials_path %> 
+| <%= link_to 'Show Bom', billmaterial_path('#') %>

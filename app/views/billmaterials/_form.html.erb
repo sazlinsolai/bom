@@ -1,0 +1,19 @@
+
+<h2>Bom New Form here</h2>
+
+              <!--%= hidden_field :billmaterial, :product_id %--><!-- (patut hidden field ni) -->
+              <%= text_field :billmaterial, :parent_id, :value => @billmaterial_id %><!-- (patut hidden field ni) -->
+              
+              <p>Bom Master : <%= text_field :billmaterial, :bom_master, :value => @value, :readonly => true %>
+              <p>Bom Master ID : <%= text_field :billmaterial, :bom_master_id, :value => @value_id, :readonly => true %>
+              <p>Bill No : <%= render :partial => 'get_billno_full' %></p>
+              <p onmouseout="showInfo();">Bill Name : <%= render :partial => 'get_bill_name' %></p>
+              <p onmouseout="showInfo();">Bill Desc : <%= render :partial => 'get_bill_desc' %></p>
+              <hr>
+                              <%= text_field :billmaterial, :bill_no %>
+                              <%= text_field :billmaterial, :bill_name %>
+                              <%= text_field :billmaterial, :bill_desc %>
+                              <!--%= text_field :billmaterial, :bom_product_id %-->
+            <hr>
+              <p onclick="showInfo();">Bill Date : <%= text_field :billmaterial, :bill_date %></p>
+              <p onclick="showInfo();">Bill Gate: <%= text_field :billmaterial, :bill_gate %></p>

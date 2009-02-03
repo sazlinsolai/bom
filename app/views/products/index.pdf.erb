@@ -1,0 +1,27 @@
+
+
+
+
+<%= 
+          @pdf = Prawn::Document.new 
+          @pdf.text  "Test Report", :style => :bold, :align => :center
+          @pdf.font "Helvetica" 
+          @pdf.font.size = 13
+
+          data = []
+            for product in @products do
+                @name_no = Product.sum(:id)
+                 data << ["#{product.product_name}","#{product.product_no}", "#{@name_no}"]
+                 
+            end
+                  @pdf.table data,                 
+                  :position => :center,
+                  :headers => ['Product Name', 'Product No','Name No'],
+                  :widths => { 0 => 100, 1 => 100},
+                  :border_style => :grid,
+                  :border_color => "ff0000"
+           
+                  @pdf.render
+
+%>
+ 

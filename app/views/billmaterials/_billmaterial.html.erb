@@ -1,0 +1,22 @@
+<% if !@prod_info[0].nil? %>
+  <table border="1">
+    <tr>
+      <td>Product Name</td>
+      <td>Product ID from product_info</td> 
+      <td>qty_strip</td> 
+      <td>specification</td>
+    </tr>
+<% for product_info in @prod_info %>
+    <tr>
+        <% @product_info = product_info %>
+          <td><%= product_info.product.product_name %></td>
+          <td><%= product_info.product_id %></td>
+          <td><%= in_place_editor_field :product_info, :qty_strip %></td>
+          <td><%= in_place_editor_field :product_info, :specification %></td>
+    </tr>
+ <% end %>
+</table>
+    
+<% else %>
+  <h2>no product info</h2>
+<% end %>

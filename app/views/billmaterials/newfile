@@ -1,0 +1,36 @@
+<% form_for(@billmaterial) do |f| %>
+  
+  <p>Bom Master : <%= f.text_field :bom_master %>
+  <p>Bill No : <%= render :partial => 'get_billno_full' %></p>
+  <p onmouseout="showInfo();">Bill Name : <%= render :partial => 'get_bill_name' %></p>
+  <p onmouseout="showInfo();">Bill Desc : <%= render :partial => 'get_bill_desc' %></p>
+  <hr>
+                  <%= f.hidden_field :bill_no %>
+                  <%= f.hidden_field :bill_name %>
+                  <%= f.hidden_field :bill_desc %>
+                 <%= f.text_field :bom_product_id %>
+<hr>
+  <p onclick="showInfo();">Bill Date : <%= f.text_field :bill_date %></p>
+  <p onclick="showInfo();">Bill Gate: <%= f.text_field :bill_gate %></p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+from /new - to show bom_master name in form
+
+<% if @master.nil? %>
+  <p>@master = nil</p>
+<% else %>
+    <p><label>Master Bom :</label><%= @master %></p>
+<% end %>
+<% @value = nil %>
+<% if @billmaterial.nil? %>
+        <p>@billmaterial.bom_master = nil</p>
+        <% @value = @products.product_no %>
+        <p>value if billmaterial nil <%= @value %></p>
+<% else %>
+<p><label>Master:</label><%= @billmaterial.bom_master %></p>
+        <% @value = @billmaterial.bom_master %>
+        <p>value if billmaterial not nil <%= @value %></p>
+<% end %>

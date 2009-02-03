@@ -1,0 +1,22 @@
+
+<table border="1" width="50%"> 
+  <tr bgcolor="silver">
+    <th align="center">BOM No</th>
+    <th align="center">BOM Name</th>
+    <th align="center">BOM Description</th>
+    <th align="center">BOM Master</th>
+    <th align="center">Action</th>
+    <th align="center">Action</th>
+  </tr>
+
+ <% for bom in @billmaterials do %>
+ <tr>
+    <td><%= link_to bom.bill_no, :action => 'new', :controller => 'billmaterials', :id => bom.bom_product_id, :id2 => bom.bom_master, :id3 => bom.bom_master_id, :id4 => bom.id  %></td>
+    <td><%= bom.bill_name %></td>
+    <td><%= bom.bill_desc %></td>
+     <td><%= bom.bom_master %></td>
+    <td><%= link_to 'Edit', edit_billmaterial_path(bom) %></td>
+    <td><%= link_to 'Remove', bom, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+ </table> 

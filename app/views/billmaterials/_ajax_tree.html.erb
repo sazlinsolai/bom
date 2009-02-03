@@ -1,0 +1,98 @@
+
+<script type="text/javascript">
+
+function toggleDiv()
+{
+  Element.toggle('mytree');
+  Element.toggle('expanded');
+  Element.toggle('collapsed');
+  return false;
+}
+function showDrag()
+{
+  var drag_images = $$('img.drag_image');
+  drag_images.all(function(value,index){return value.style.display='inline';});
+  Element.toggle('done');
+  Element.toggle('reorder');
+  return false;
+}
+function hideDrag()
+{
+  var drag_images = $$('img.drag_image');
+  drag_images.all(function(value,index){return value.style.display='none';});
+  Element.toggle('done');
+  Element.toggle('reorder');
+  return false;
+}
+</script>
+
+<%= @parent.id %>
+
+<div id="mytree" class="mytree">
+
+  <% @ancestors = @billmaterial.ancestors.collect{|parent| parent_id} if @billmaterial.parent %>
+  <% @billmaterials = Billmaterial.find(:all, :conditions => "id = '#{@parent.id}'") %>
+<table border="1">
+<tr>
+<td>
+<%= get_tree_data(@billmaterials, 0){|n|
+     link_to(n.bill_name,
+      :controller=>'billmaterials', :action=>'new', :bom_master => n.bom_master, 
+                   :bom_master_id => n.bom_master_id, :bom_id => n.id
+  )}
+
+  %>
+</td>
+
+<!-- uncomment if want to allow user to drag tree node 
+  <!% @billmaterials.each do |node| %>
+  <!%= draggable_element node.id.to_s+'_tree_div',:revert=>true,:snap=>false, :handle=>"'#{node.id.to_s}_drag_image'" %>
+  <!%= drop_receiving_element node.id.to_s+'_tree_div',
+      :accept=>'inner_tree_element',
+  :url=>{:controller=>'billmaterials',:action=>'sort_ajax_tree', :product_id=>node.id,:id=>nil},
+  :loading=>"Element.show('sort_tree_indicator')",
+  :complete=>"Element.hide('sort_tree_indicator')"
+  %>
+
+  <!% end %>
+  -->
+
+
+  <%= image_tag 'indicator.gif', :id=>'tree_indicator', :style=>'display:none' %>
+  <%= image_tag 'indicator.gif', :id=>'sort_tree_indicator', :style=>'display:none' %>
+  </tr>
+</table>
+</div>
+
+
+<script type="text/javascript">
+
+  var selected_el = document.getElementById('<%=@billmaterial.id%>_tree_item');
+  selected_el.className='highlighted';
+
+  function toggleMyTree(id)
+  {
+  Element.toggle(id+'collapsed');
+  Element.toggle(id+'expanded');
+  Element.toggle(id+'children');
+  return false;
+  }
+  function toggleBackground(el)
+  {
+  // using collection proxies to change the background
+  var highlighted_el = $$("span.highlighted");
+  highlighted_el.all(function(value,index){return value.className='normal'});
+
+  el.className='highlighted';
+  selected_el = el;
+  return false;
+  }
+  function openMyTree(id)
+  {
+  Element.hide(id+'collapsed');
+  Element.show(id+'expanded');
+  Element.show(id+'children');
+  return false;
+  }
+
+</script>
